@@ -88,10 +88,10 @@ const criarAgendamento = async (e) => {
     console.log(dados)
 
     if (url == '/saopaulo') {
-        filialSaoPaulo(dados)
+        filialSaoPaulo([dados.data])
     }
     else if (url == "/santos") {
-        filialSantos(dados)
+        filialSantos([dados.data])
     }
 
 }
