@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+
+        <section class="_section _section_1">
+            <div class="_subsection_01">
+                <p>Com a Pandemia da Covid-19, muita coisa mudou.
+                    O trabalho remoto não foi uma opção,
+                    mas sim necessário e assim se foram quase 2 anos de home office.
+                </p>
+                <img src="./assets/Image.svg" alt="">
+            </div>
+            <div class="_subsection_01">
+                <img src="./assetss/Image2.svg" alt="">
+                <p>
+                    Porém, hoje com a vacinação em andamento,
+                    já podemos enxergar novas possibilidades,
+                    e aqui na FCamara não é diferente, com muito cuidado e segurança estamos planejando a reabertura
+                    parcial da nossa empresa.
+                </p>
+            </div>
+        </section>
+
+        <section class="_section _section_2">
+
+            <div class="_subsection _sub_01">
+                <img src="./assetss/image4.svg" alt="">
+            </div>
+
+            <div class="_subsection _sub_02">
+                <div class=_topics>
+                    <img src="./assetss/relogio.svg" alt="">
+                    <p>O Escritório estará disponível
+                        das 08:00 às 18:00.</p>
+
+                </div>
+                <div class=_topics>
+                    <img src="./assetss/termomentro.svg" alt="">
+                    <p>A temperatura de todos será
+                        checada no local para a
+                        segurança de todos.</p>
+                </div>
+                <div class=_topics>
+                    <img src="./assetss/mascara.svg" alt="">
+                    <p>O uso da máscara é obrigatório.</p>
+                </div>
+                <div class=_topics>
+                    <img src="./assetss/distanciamento.svg" alt="">
+                    <p>As mesas possuem um distanciamento seguro para todos.</p>
+                </div>
+
+                <div class="_btn_container">
+                    <a href="#section_03" class="_btn">AGENDAR</a>
+                </div>
+            </div>
+
+        </section>
+        <section class="_section _section_3" id="section_03">
+            <div class="_img_section_3">
+                <img src="./assets/Image3.svg" alt="">
+            </div>
+            <div>
+                <form id="_agendamento">
+                    <label for="_nome">Nome</label>
+                    <input type="text" class="_nome _global" name="nome">
+                    <label for="escritorios">Escritório</label>
+                    <select name="escritorios" id="escritorios" class="_global">
+                        <option value="Selecione um escriótorio" selected disabled>Selecione o escriótorio</option>
+                        <option value="São Paulo">São Paulo</option>
+                        <option value="Santos">Santos</option>
+                    </select>
+                    <label for="data">Data</label>
+                    <input type="date" class="_global" name="data">
+    
+                    <label for="estacao">Estação de trabalho</label>
+                    <select name="estacoes" id="estacoes" class="_global">
+                        <option value="Selecione uma estação" selected disabled>Selecione uma estação de trabalho</option>
+                    </select>
+                    <button class="enviar _global" id="enviar">Agendar</button>
+
+                </form>
+            </div>
+        </section>
+
+        <section class="_section _section_4" id="section_04">
+
+            <h2 class="_title">Todos os agendamenos</h2>
+
+            <nav class="_nav_tabs">
+                <ul>
+                    <li>
+                        <input type="radio" name="tabs" class="_rb_tabs" id="tab1" checked>
+                        <label for="tab1">São Paulo</label>
+                        <div class="_container_tab" id="_constainer_tab_sao_paulo">
+                            <div class="_resultados_title">
+                                <span class="_spn _funcionario">Nome</span>
+                                <span class="_spn _escritorio">Escritório</span>
+                                <span class="_spn _stacao">Estação</span>
+                                <spsn class="_spn data">Data</spsn>
+                            </div>
+                           
+                        </div>
+                    </li>
+                    <li>
+                        <input type="radio" name="tabs" class="_rb_tabs" id="tab2">
+                        <label for="tab2">Santos</label>
+
+                        <div class="_container_tab" id="_constainer_tab_santos">
+                            <div class="_resultados_title">
+                                <span class="_spn _funcionario">Nome</span>
+                                <span class="_spn _escritorio">Escritório</span>
+                                <span class="_spn _stacao">Estação</span>
+                                <spsn class="_spn data">Data</spsn>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+    </div>
+    <footer>
+        DESENVOLDIDO POR:
+        <a href="https://www.nizael.com.br" target="_blanck">nizael.com.br</a>
+    </footer>
+    <script src="./index.js"></script>
+</body>
+
+</html>
