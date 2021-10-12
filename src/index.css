@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -5,12 +7,12 @@
     text-decoration: none;
     list-style: none;
     outline: none;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Open Sans';
 }
 
 p{
     text-align: justify;
-    font-size: 1.4em;
+    font-size: 1.2em;
     font-weight: bold;
 }
 ._section {

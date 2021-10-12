@@ -1,46 +1,32 @@
 
-const estacoesSaoPaulo = [
-    'Estação 01', 'Estação 02', 'Estação 03', 'Estação 04', 'Estação 05',
-    'Estação 06', 'Estação 07', 'Estação 08', 'Estação 09', 'Estação 10']
 
-const estacoes = document.querySelector('#estacoes')
-
-estacoesSaoPaulo.map((e) => {
-    estacoes.innerHTML += `<option>${e}</option>`
-})
-
-const filialSantos = (dados) =>{
-
+const filialSantos = async (dados) => {
     const constainerTabSantos = document.getElementById('_constainer_tab_santos')
-    
-    dados.map((e) => {
+    constainerTabSantos.innerHTML = ''
+    await dados.map((e) => {
         constainerTabSantos.innerHTML += `
-        <div class="_resultados">
-        <span class="_spn _funcionario">${e.nome}</span>
-        <span class="_spn _escritorio">${e.filial}</span>
-        <span class="_spn _stacao">${e.estacao}</span>
-        <spsn class="_spn data">${e.data}</spsn>
-        <button class="_editar">Editar</button>
-        <button class="_excluir">Excluir</button>
-        </div>
+            <div class="_resultados">
+                <span class="_spn _funcionario">${e.nome}</span>
+                <span class="_spn _escritorio">${e.filial}</span>
+                <span class="_spn _stacao">${e.estacao}</span>
+                <spsn class="_spn data">${e.dataLabel}</spsn>
+            </div>
         `
     })
 }
 
-
-const filialSaoPaulo = (dados) => {
+const filialSaoPaulo = async (dados) => {
     const constainerTabSaoPaulo = document.getElementById('_constainer_tab_sao_paulo')
-    // constainerTabSaoPaulo.innerHTML = ''
-    dados.map((e) => {
+    constainerTabSaoPaulo.innerHTML = ''
+    await dados.map((e) => {
+
         constainerTabSaoPaulo.innerHTML += `
-                                <div class="_resultados">
-                                    <span class="_spn _funcionario">${e.nome}</span>
-                                    <span class="_spn _escritorio">${e.filial}</span>
-                                    <span class="_spn _stacao">${e.estacao}</span>
-                                    <spsn class="_spn data">${e.data}</spsn>
-                                    <button class="_editar">Editar</button>
-                                    <button class="_excluir">Excluir</button>
-                                </div>
+            <div class="_resultados" id=${e._id}>
+                <span class="_spn _funcionario">${e.nome}</span>
+                <span class="_spn _escritorio">${e.filial}</span>
+                <span class="_spn _stacao">${e.estacao}</span>
+                <spsn class="_spn data">${e.dataLabel}</spsn>
+            </div>
     `
     })
 }
@@ -51,15 +37,11 @@ const criarAgendamento = async (e) => {
     e.preventDefault()
     const { nome, escritorios, data, estacoes } = document.getElementById('_agendamento')
 
-    console.log(nome.value, escritorios.value, data.value.split('-').reverse().join('/'), estacoes.value)
-
-    let url = '/saopaSulo'
-
-    if (escritorios.value == 'São Paulo') {
-        url = '/saopaulo'
-    } else if (escritorios.value == 'Santos') {
-        url = '/santos'
-    } else {
+    if (!nome.value
+        || escritorios.value === 'Selecione um escriótorio'
+        || !data.value
+        || estacoes.value === 'Selecione uma estação') {
+        alert('Todos os dados são obrigatórios')
         return
     }
 
@@ -68,12 +50,10 @@ const criarAgendamento = async (e) => {
         filial: escritorios.value,
         data: data.value,
         estacao: estacoes.value
-
     })
 
     const headers = new Headers()
     headers.append("Content-Type", "Application/json")
-
     const options = {
         method: 'POST',
         mode: 'cors',
@@ -81,42 +61,49 @@ const criarAgendamento = async (e) => {
         body,
     }
 
-    const request = new Request(`http://localhost:3000${url}/criar`, options)
-
+    const request = new Request(`http://localhost:3000/criar`, options)
     const resposta = await fetch(request)
     const dados = await resposta.json()
-    console.log(dados)
-
-    if (url == '/saopaulo') {
-        filialSaoPaulo([dados.data])
+    if (dados.status == 200) {
+        buscarAgendamentos()
+    } else {
+        alert(dados.data)
     }
-    else if (url == "/santos") {
-        filialSantos([dados.data])
-    }
-
 }
+
 enviar.addEventListener('click', criarAgendamento)
 
-const buscarAgendamentosSaoPaulo = async () => {
-
-    const request = new Request("http://localhost:3000/saopaulo")
-
+const buscarAgendamentos = async () => {
+    const request = new Request("http://localhost:3000")
     const resposta = await fetch(request)
     const dados = await resposta.json()
     console.log(dados)
-    filialSaoPaulo(dados)
+    const saoPaulo = dados.filter((e) => e.filial === 'São Paulo')
+    filialSaoPaulo(saoPaulo)
+    const santos = dados.filter((e) => e.filial === 'Santos')
+    filialSantos(santos)
 }
 
-buscarAgendamentosSaoPaulo()
+buscarAgendamentos()
 
 
-const buscarAgendamentosSantos = async () => {
 
-    const requestn = new Request("http://localhost:3000/santos")
+const estacoes = (dados) => {
+    const estacoes = document.querySelector('#estacoes')
 
-    const resposta = await fetch(requestn)
+    dados.map((e) => {
+        estacoes.innerHTML += `<option>${e.nome}</option>`
+    })
+}
+
+
+
+const buscaEstcaoes = async () => {
+    const request = new Request("http://localhost:3000/estacao")
+    const resposta = await fetch(request)
     const dados = await resposta.json()
     console.log(dados)
-    filialSantos(dados)
+    estacoes(dados)
 }
-buscarAgendamentosSantos()
+
+buscaEstcaoes()
