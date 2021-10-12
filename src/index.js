@@ -37,13 +37,13 @@ const criarAgendamento = async (e) => {
     e.preventDefault()
     const { nome, escritorios, data, estacoes } = document.getElementById('_agendamento')
 
-    if (!nome.value
-        || escritorios.value === 'Selecione um escriótorio'
-        || !data.value
-        || estacoes.value === 'Selecione uma estação') {
-        alert('Todos os dados são obrigatórios')
-        return
-    }
+    // if (!nome.value
+    //     || escritorios.value === 'Selecione um escriótorio'
+    //     || !data.value
+    //     || estacoes.value === 'Selecione uma estação') {
+    //     alert('Todos os dados são obrigatórios')
+    //     return
+    // }
 
     const body = JSON.stringify({
         nome: nome.value,
@@ -61,7 +61,7 @@ const criarAgendamento = async (e) => {
         body,
     }
 
-    const request = new Request(`http://localhost:3000/criar`, options)
+    const request = new Request(`https://landingpagenizael.heroku.com/criar`, options)
     const resposta = await fetch(request)
     const dados = await resposta.json()
     if (dados.status == 200) {
@@ -74,7 +74,7 @@ const criarAgendamento = async (e) => {
 enviar.addEventListener('click', criarAgendamento)
 
 const buscarAgendamentos = async () => {
-    const request = new Request("http://localhost:3000")
+    const request = new Request("https://landingpagenizael.heroku.com")
     const resposta = await fetch(request)
     const dados = await resposta.json()
     console.log(dados)
@@ -99,7 +99,7 @@ const estacoes = (dados) => {
 
 
 const buscaEstcaoes = async () => {
-    const request = new Request("http://localhost:3000/estacao")
+    const request = new Request("https://landingpagenizael.heroku.com/estacao")
     const resposta = await fetch(request)
     const dados = await resposta.json()
     console.log(dados)
