@@ -61,7 +61,7 @@ const criarAgendamento = async (e) => {
         body,
     }
 
-    const request = new Request(`https://landingpagenizael.heroku.com/criar`, options)
+    const request = new Request(`https://landingpagenizael.herokuapp.com/criar`, options)
     const resposta = await fetch(request)
     const dados = await resposta.json()
     if (dados.status == 200) {
@@ -74,7 +74,7 @@ const criarAgendamento = async (e) => {
 enviar.addEventListener('click', criarAgendamento)
 
 const buscarAgendamentos = async () => {
-    const request = new Request("https://landingpagenizael.heroku.com")
+    const request = new Request("https://landingpagenizael.herokuapp.com")
     const resposta = await fetch(request)
     const dados = await resposta.json()
     console.log(dados)
@@ -99,7 +99,7 @@ const estacoes = (dados) => {
 
 
 const buscaEstcaoes = async () => {
-    const request = new Request("https://landingpagenizael.heroku.com/estacao")
+    const request = new Request("https://landingpagenizael.herokuapp.com/estacao")
     const resposta = await fetch(request)
     const dados = await resposta.json()
     console.log(dados)
